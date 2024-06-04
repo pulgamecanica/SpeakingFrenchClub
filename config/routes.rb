@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :phrases
+  resources :event_cards
+  resources :subscriptions
+  resources :events
+  resources :card_translations
+  resources :cards
+  resources :langs
+  devise_for :users, skip: [:registrations]
   get 'intra_auth/ft_auth'
-  get 'intra_auth/auth'
   get 'intra_auth/auth_callback'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

@@ -12,7 +12,14 @@
   </head>
 
   <body>
-    <main class="bg-gray-400">
+    <main class="bg-white">
+      <% if not current_page?(root_url) %>
+      <nav class="bg-gray-100 flex justify-center items-center">
+        <%= link_to root_path, class:"hover:bg-white" do %>
+          <img class="p-2" height="50px" width="50px" src="<%=asset_path("parrot.png") %>">
+        <% end %>
+      </nav>
+      <% end %>
       <%= yield %>
     </main>
   </body>

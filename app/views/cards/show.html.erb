@@ -1,0 +1,41 @@
+<% if notice.present? %>
+  <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<% end %>
+<div class="flex justify-between flex-col gap-2 mt-2">
+  <div class="mx-auto md:w-2/3 w-full flex flex-col">
+    <div class="mx-auto">
+      <div class="flex justify-around items-center gap-6">
+        <span class="icon-svg">
+          <%= @card.icon_svg.html_safe %>
+        </span>
+        <h5 class="text-2xl font-semibold tracking-tight text-gray-900 h-full"><%= @card.name_fr %></h5>
+      </div>
+      <hr class="my-2 border-gray-300 w-full">
+      <% @card.card_translations.each do |translation| %>
+        <%= link_to edit_card_translation_path(translation) do %>
+          <%= render translation %>
+        <% end %>
+      <% end %>
+      <div class="flex items-center justify-center mt-2">
+        <%= link_to root_path do %>
+        <svg width="32px" height="32px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M9 12H15" stroke="#99c1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M12 9L12 15" stroke="#99c1f1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M3 12C3 4.5885 4.5885 3 12 3C19.4115 3 21 4.5885 21 12C21 19.4115 19.4115 21 12 21C4.5885 21 3 19.4115 3 12Z" stroke="#99c1f1" stroke-width="2"></path> </g></svg>
+        <% end %>
+      </div>
+      <hr class="my-2 border-gray-300">
+    </div>
+  </div>
+  <hr class="my-2 border-gray-300 mx-5">
+  <div class="mx-auto md:w-2/3 w-full flex">
+    <div class="mx-auto">
+      <% @card.phrases.each do |phrase| %>
+        <%= render phrase %>
+      <% end %>
+    </div>
+  </div>
+  <hr class="my-2 border-gray-300 mx-5">
+  <div class="flex justify-center items-center gap-2">
+    <%= link_to "Edit this card", edit_card_path(@card), class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to "Back to cards", cards_path, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= button_to "Destroy this card", @card, method: :delete, class: "rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+  </div>
+</div>

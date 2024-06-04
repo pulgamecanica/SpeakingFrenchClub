@@ -2,9 +2,6 @@ class IntraAuthController < ApplicationController
   def ft_auth
     redirect_to "https://api.intra.42.fr/oauth/authorize?client_id=#{ENV['FT_CLIENT']}&redirect_uri=#{ENV['FT_CALLBACK']}&response_type=code", allow_other_host: true
   end
-  
-  def auth
-  end
 
   def auth_callback
     notice = ""

@@ -10,9 +10,71 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_04_152158) do
+ActiveRecord::Schema[7.1].define(version: 2024_06_04_232740) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "card_translations", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "lang_id", null: false
+    t.string "name_translated", null: false
+    t.text "info_hints", default: ""
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_card_translations_on_card_id"
+    t.index ["lang_id"], name: "index_card_translations_on_lang_id"
+  end
+
+  create_table "cards", force: :cascade do |t|
+    t.string "name_fr", null: false
+    t.text "icon_svg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "event_cards", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "card_id", null: false
+    t.integer "order"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_event_cards_on_card_id"
+    t.index ["event_id"], name: "index_event_cards_on_event_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "description"
+    t.datetime "start", null: false
+    t.datetime "end", null: false
+    t.boolean "locked", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "langs", force: :cascade do |t|
+    t.string "name", null: false
+    t.text "flag_svg", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "phrases", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["card_id"], name: "index_phrases_on_card_id"
+  end
+
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "event_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_subscriptions_on_event_id"
+    t.index ["user_id"], name: "index_subscriptions_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,4 +99,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_04_152158) do
     t.index ["intra_user"], name: "index_users_on_intra_user", unique: true
   end
 
+  add_foreign_key "card_translations", "cards"
+  add_foreign_key "card_translations", "langs"
+  add_foreign_key "event_cards", "cards"
+  add_foreign_key "event_cards", "events"
+  add_foreign_key "phrases", "cards"
+  add_foreign_key "subscriptions", "events"
+  add_foreign_key "subscriptions", "users"
 end

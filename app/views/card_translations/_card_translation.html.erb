@@ -1,0 +1,10 @@
+<div id="<%= dom_id card_translation %>">
+  <div class="flex justify-between items-center gap-2">
+    <span class="icon-svg-sm">
+    <%= card_translation.lang.flag_svg.html_safe %>
+    </span>
+    <h2 class="text-sm font-semibold tracking-tight text-gray-900"><%= card_translation.name_translated %></h2>
+  </div>
+  <h2 class="text-xs text-right font-semibold tracking-tight text-gray-600"><%= card_translation.info_hints %></h2>
+</div>
+

@@ -1,0 +1,13 @@
+<div id="<%= dom_id card %>">
+  <div class="flex justify-around items-center gap-6">
+    <span class="icon-svg">
+    <%= card.icon_svg.html_safe %>
+    </span>
+    <h5 class="text-2xl font-semibold tracking-tight text-gray-900 h-full"><%= card.name_fr %></h5>
+  </div>
+  <hr class="my-3 border-gray-300 w-full">
+  <% card.card_translations.each do |translation| %>
+    <%= render translation %>
+  <% end %>
+</div>
+
