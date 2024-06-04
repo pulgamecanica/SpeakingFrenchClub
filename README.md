@@ -1,24 +1,31 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Ruby version `ruby 3.3.0 (2023-12-25 revision 5124f9ac75) [x86_64-linux]`
 
-Things you may want to cover:
+* System dependencies `rails standard + dotenv + devise + oauth2`
 
-* Ruby version
+* Configuration `rails tailwindcss:watch & rails s`
 
-* System dependencies
+* Database creation `rails db:create`
 
-* Configuration
+* Database initialization `rails db:migrate`
 
-* Database creation
+***
 
-* Database initialization
+### .env
 
-* How to run the test suite
+    FT_CLIENT=... // From intra
+    FT_SECRET=... // From intra
+    FT_CALLBACK=... // Whatever callback you decided
+    FT_CALLBACK_FORMATED=... // Same as before but formated (/ instead of %2)
+    FT_REDIRECT=... // The redirect link to intra authorization
 
-* Services (job queues, cache servers, search engines, etc.)
+***
 
-* Deployment instructions
+### Schema
 
-* ...
+![image](https://github.com/pulgamecanica/42Rooms/assets/28810331/a2209adb-4670-442a-a77b-9e4e2437cb4f)
+
+
+
+
